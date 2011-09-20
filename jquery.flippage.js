@@ -4,13 +4,21 @@
  * 
  * Par Marc Buils ( mbuils@marcbuils.fr )
  * Sous licence LGPL v3 (http://www.gnu.org/licenses/lgpl-3.0.txt)
+ * 
+ * v0.5.1
+ * - Add a delay between click and flip
+ * 
+ * V0.5.0:
+ * - First release
  */
 (function( $ ){
 	$.flippage = {};
 	$.flippage.options = {
 		width: 		200,
 		height:		150,
-		shadowSize:	12
+		shadowSize:	12,
+		delay:		250,
+		selectable:	false
 	};
 	
 	$.fn.flippage = function( p_options ){
@@ -42,6 +50,7 @@
 			var _current = 0;	
 			var _draggingRight = false;
 			var _draggingLeft = false;
+			var _mousedown = false;
 			
 			var _pageFlippable = function( p_current ) {
 				_draggingRight = false;
@@ -75,81 +84,99 @@
 				
 				if ( $this.children('div').eq( _current+2 ).size() > 0 ){
 					$this.children('div').eq( _current+1 ).bind('mousedown', function( p_e ){
-						if ( !_draggingLeft && !_draggingRight ){
-							var $_p1 = $this.children('div').eq( _current );
-							var $_p2 = $this.children('div').eq( _current+1 );
-							var $_p3 = $this.children('div').eq( _current+2 );
-							var $_p4 = $this.children('div').eq( _current+3 );
-							
-							$this.addClass('flippage_flipping');
-							_pos.left = p_e.pageX - p_e.layerX - _options.width;
-							$_p1.css( { zIndex: 1, left: 0 } );
-							$_p2.css( { zIndex: 3, left: _options.width  } );
-							$_p3.css( { zIndex: 4, left: _options.width*2, width: 0,								
-								webkitBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								mozBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								oBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								msBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								boxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)'
-							} ).append( $('<div></div>').addClass('flippage_rshadow').css( {
-									width: 	_options.width,
-									height:	_options.height,
-									opacity: 1,
-									right: 0
-								} )
-							);
-							$_p4.css( { zIndex: 2, left: _options.width, width: _options.width } );
-							
-							_draggingRight = true;
-							$_p3.show();
-							$_p4.show();
-						}
+						_mousedown = true;
 						
-						return false;
+						$this.delay( _options.delay ).queue( function(){
+							$this.clearQueue( 'delayflip' );
+							if ( _mousedown && !_draggingLeft && !_draggingRight ){
+								var $_p1 = $this.children('div').eq( _current );
+								var $_p2 = $this.children('div').eq( _current+1 );
+								var $_p3 = $this.children('div').eq( _current+2 );
+								var $_p4 = $this.children('div').eq( _current+3 );
+								
+								$this.addClass('flippage_flipping');
+								_pos.left = p_e.pageX - p_e.layerX - _options.width;
+								$_p1.css( { zIndex: 1, left: 0 } );
+								$_p2.css( { zIndex: 3, left: _options.width  } );
+								$_p3.css( { zIndex: 4, left: _options.width*2, width: 0,								
+									webkitBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									mozBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									oBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									msBoxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									boxShadow: '-'+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)'
+								} ).append( $('<div></div>').addClass('flippage_rshadow').css( {
+										width: 	_options.width,
+										height:	_options.height,
+										opacity: 1,
+										right: 0
+									} )
+								);
+								$_p4.css( { zIndex: 2, left: _options.width, width: _options.width } );
+								
+								_draggingRight = true;
+								$_p3.show();
+								$_p4.show();
+							}
+							
+							$this.dequeue();
+						}, 'delayflip' );
+						
+						if ( !_options.selectable ){
+							return false;
+						}
 					});
 				}
 				
 				if ( _current > 0 ){
 					$this.children('div').eq( _current ).bind('mousedown', function( p_e ){
-						if ( !_draggingRight && !_draggingLeft ){
-							var $_p1 = $this.children('div').eq( _current+1 );
-							var $_p2 = $this.children('div').eq( _current );
-							var $_p3 = $this.children('div').eq( _current-1 );
-							var $_p4 = $this.children('div').eq( _current-2 );
-
-							$this.addClass('flippage_flipping');
-							_pos.left = p_e.pageX - p_e.layerX;
-							$_p1.css( { zIndex: 1, left: _options.width } );
-							$_p2.show().css({
-								zIndex: 3, 
-								left: 0,
-								width: _options.width
-							}).children('div:eq(0)').css({
-								marginLeft: 0
-							});
-							$_p3.css( { zIndex: 4, left: 0, width: 0,								
-								webkitBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								mozBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								oBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								msBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
-								boxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)'
-							} )	.append( $('<div></div>').addClass('flippage_lshadow').css( {
-									width: 	_options.width,
-									height:	_options.height,
-									opacity: 1,
-									right: -1 * _options.width
-								} )
-							).children('div:eq(0)').css( {
-								marginLeft: _options.height * -1
-							});
-							$_p4.css( { zIndex: 2, left: 0, width: _options.width } );
-							
-							_draggingLeft = true;
-							$_p3.show();
-							$_p4.show();
-						}
+						_mousedown = true;
 						
-						return false;
+						$this.delay( _options.delay ).queue( function(){
+							$this.clearQueue( 'delayflip' );
+							if ( _mousedown && !_draggingRight && !_draggingLeft ){
+								var $_p1 = $this.children('div').eq( _current+1 );
+								var $_p2 = $this.children('div').eq( _current );
+								var $_p3 = $this.children('div').eq( _current-1 );
+								var $_p4 = $this.children('div').eq( _current-2 );
+	
+								$this.addClass('flippage_flipping');
+								_pos.left = p_e.pageX - p_e.layerX;
+								$_p1.css( { zIndex: 1, left: _options.width } );
+								$_p2.show().css({
+									zIndex: 3, 
+									left: 0,
+									width: _options.width
+								}).children('div:eq(0)').css({
+									marginLeft: 0
+								});
+								$_p3.css( { zIndex: 4, left: 0, width: 0,								
+									webkitBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									mozBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									oBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									msBoxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)',
+									boxShadow: ''+_options.shadowSize+'px 0px '+_options.shadowSize+'px rgb(170, 170, 170)'
+								} )	.append( $('<div></div>').addClass('flippage_lshadow').css( {
+										width: 	_options.width,
+										height:	_options.height,
+										opacity: 1,
+										right: -1 * _options.width
+									} )
+								).children('div:eq(0)').css( {
+									marginLeft: _options.height * -1
+								});
+								$_p4.css( { zIndex: 2, left: 0, width: _options.width } );
+								
+								_draggingLeft = true;
+								$_p3.show();
+								$_p4.show();
+							}
+							
+							$this.dequeue();
+						}, 'delayflip' );
+						
+						if ( !_options.selectable ){
+							return false;
+						}
 					});
 				}
 			};
@@ -310,13 +337,15 @@
 							});
 						}
 						
-						$_p3.children('.flippage_lshadow').css( { 
+						$_p3.children('.flippage_lshadow').css( {
 							right: $_p3.width() - _options.width,
 							opacity: 1-($_p3.width()/_options.width)
 						} );
 					}
 				})
 				.bind('mouseup', function(p_e){
+					_mousedown = false;
+					
 					if (_draggingRight) {
 						var $_p2 = $this.children('div').eq( _current+1 );
 						var $_p3 = $this.children('div').eq( _current+2 );
