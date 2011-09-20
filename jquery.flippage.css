@@ -1,0 +1,26 @@
+.flippage {
+	position: relative;
+}
+
+.flippage_page {
+	display: block;
+	position: absolute;
+	overflow: hidden;
+}
+
+.flippage_page > div {
+	position: absolute;
+	top: 0;
+}
+
+.flippage_rshadow {
+	background-image: url("img/shadow-top-forward.png");
+	background-position: 100% 0;
+	background-repeat: repeat-y;
+}
+
+.flippage_lshadow {
+	background-image: url("img/shadow-top-back.png");
+	background-position: 0 0;
+	background-repeat: repeat-y;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<title>FlipPage</title>
+		
+		<!-- jQuery -->
+		<script src="../jquery.min.js"></script>
+		
+		<!--  Flippage -->
+		<script src="../jquery.flippage.js"></script>
+		<link href="../jquery.flippage.css" type="text/css" rel="stylesheet" />
+		
+		<style>
+			body > div {
+				display: block;
+				width: 500px;
+				height: 333px;
+				margin-left: 50px;
+				margin-top: 50px;
+			}
+
+			
+			.exemples > div {
+				background-color: white;
+			}
+		</style>
+		<script>
+			(function($){
+				$(document).ready(function(){
+					$('.exemples:eq(0)').flippage({
+						width: 500,
+						height: 333
+					});
+					
+					$('.exemples:eq(1)').flippage({
+						width: 300,
+						height: 150
+					});
+				});
+			})(jQuery);
+		</script>
+	</head>
+	<body>
+		<h1>Page d'exemples d'utilisation du plugin FlipPage</h1>
+		<div>
+			<h2>Exemple 1</h2>
+			<div class="exemples">
+				<div><img src="img/img1.jpg" style="margin-left: 0px;" /></div>
+				<div><img src="img/img1.jpg" style="margin-left: -250px;" /></div>
+				<div><img src="img/img2.jpg" style="margin-left: 0px;" /></div>
+				<div><img src="img/img2.jpg" style="margin-left: -250px;" /></div>
+				<div><img src="img/img3.jpg" style="margin-left: 0px;" /></div>
+				<div><img src="img/img3.jpg" style="margin-left: -250px;" /></div>
+				<div><img src="img/img4.jpg" style="margin-left: 0px;" /></div>
+				<div><img src="img/img4.jpg" style="margin-left: -250px;" /></div>
+				<div><img src="img/img5.jpg" style="margin-left: 0px;" /></div>
+				<div><img src="img/img5.jpg" style="margin-left: -250px;" /></div>
+				<div><img src="img/img6.jpg" style="margin-left: 0px;" /></div>
+				<div><img src="img/img6.jpg" style="margin-left: -250px;" /></div>
+			</div>
+		</div>
+		<div>
+			<h2>Exemple 2</h2>
+			
+			<div class="exemples">
+				<div><h3>Page 1</h3></div>
+				<div><h3>Page 2</h3></div>
+				<div><h3>Page 3</h3></div>
+				<div><h3>Page 4</h3></div>
+				<div><h3>Page 5</h3></div>
+				<div><h3>Page 6</h3></div>
+				<div><h3>Page 7</h3></div>
+				<div><h3>Page 8</h3></div>
+			</div>
+		</div>
+		
+	</body>
+</html>
