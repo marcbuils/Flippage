@@ -10,14 +10,12 @@
 		<script src="../jquery.min.js"></script>
 		
 		<!--  Flippage -->
-		<script src="../jquery.flippage.js"></script>
+		<script src="../jquery.flippage.min.js"></script>
 		<link href="../jquery.flippage.css" type="text/css" rel="stylesheet" />
 		
 		<style>
 			body > div {
 				display: block;
-				width: 500px;
-				height: 333px;
 				margin-left: 50px;
 				margin-top: 50px;
 			}
@@ -61,7 +59,8 @@
 				<div><img src="img/img6.jpg" style="margin-left: 0px;" /></div>
 				<div><img src="img/img6.jpg" style="margin-left: -250px;" /></div>
 			</div>
-		</div>
+			<div><a href="#" onclick="$('.exemples:eq(0)').trigger('previous'); return false;">Previous</a> - <a href="#" onclick="javascript:$('.exemples:eq(0)').trigger('next'); return false;">Next</a></div>
+		</div>	
 		<div>
 			<h2>Exemple 2</h2>
 			
