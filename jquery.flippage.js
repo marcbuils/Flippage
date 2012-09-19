@@ -2,9 +2,12 @@
  * FlipPage: Tournez les pages sur votre iPad
  * http://flippage.marcbuils.fr
  * 
- * Par Marc Buils ( mbuils@marcbuils.fr )
+ * Par Marc Buils ( marc.buils@marcbuils.fr )
  * Sous licence LGPL v3 (http://www.gnu.org/licenses/lgpl-3.0.txt)
  * 
+ * v0.6.0
+ * - Bind 'previous' and 'next' trigger to going to the previous or the next page
+ *  
  * v0.5.1
  * - Add a delay between click and flip
  * 
@@ -52,6 +55,22 @@
 			var _draggingLeft = false;
 			var _mousedown = false;
 			
+			// add next and prev functions
+			$this.bind('previous', function( p_event ){
+				$this.children('div').eq( _current ).trigger( 'mousedown' );
+				$this.delay(_options.delay).queue( function(){
+					$(document).trigger( 'mouseup' );
+					$this.dequeue();
+				}, 'delayflip');
+			});
+			$this.bind('next', function( p_event ){
+				$this.children('div').eq( _current+1 ).trigger( 'mousedown' );
+				$this.delay(_options.delay).queue( function(){
+					$(document).trigger( 'mouseup' );
+					$this.dequeue();
+				}, 'delayflip');
+			});
+			
 			var _pageFlippable = function( p_current ) {
 				_draggingRight = false;
 				_draggingLeft = false;
@@ -85,7 +104,7 @@
 				if ( $this.children('div').eq( _current+2 ).size() > 0 ){
 					$this.children('div').eq( _current+1 ).bind('mousedown', function( p_e ){
 						_mousedown = true;
-						
+
 						$this.delay( _options.delay ).queue( function(){
 							$this.clearQueue( 'delayflip' );
 							if ( _mousedown && !_draggingLeft && !_draggingRight ){
