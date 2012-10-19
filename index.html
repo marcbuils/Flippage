@@ -62,24 +62,28 @@ Développé à l'origine pour une présentation sur tablette tactile, il peut au
 <li>v0.6.0 - 19/09/2012: Ajout des trigger 'next' et 'previous' pour changer les pages en mode programmation.</li>
 <li>v0.5.1: Ajout d'un délai pour éviter de changer la page lors d'un click involontaire</li>
 <li>v0.5.0: Import initial </li>
-</ul><h2>Exemple d'utilisation</h2>
+</ul><h2>Demo</h2>
 
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"exemple2"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div&gt;&lt;h3&gt;</span>Page 1<span class="nt">&lt;/h3&gt;&lt;/div&gt;</span>
-    <span class="nt">&lt;div&gt;&lt;h3&gt;</span>Page 2<span class="nt">&lt;/h3&gt;</span>  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">onclick=</span><span class="s">"alert('Pages are clickable !'); return false;"</span><span class="nt">&gt;</span>Test me<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div&gt;&lt;h3&gt;</span>Page 3<span class="nt">&lt;/h3&gt;&lt;/div&gt;</span>
-    <span class="nt">&lt;div&gt;&lt;h3&gt;</span>Page 4<span class="nt">&lt;/h3&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<p><a href="http://flippage.marcbuils.fr">http://flippage.marcbuils.fr</a></p>
 
-<span class="nt">&lt;script&gt;</span>
- <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-     <span class="nx">$</span><span class="p">(</span><span class="s1">'#exemple2'</span><span class="p">).</span><span class="nx">flippage</span><span class="p">({</span>
-         <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-         <span class="nx">height</span><span class="o">:</span> <span class="mi">150</span>
-     <span class="p">});</span>
- <span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span>
-</pre></div>
+<h2>Exemple d'utilisation</h2>
+
+<pre><code>&lt;div id="exemple2"&gt;
+    &lt;div&gt;&lt;h3&gt;Page 1&lt;/h3&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;h3&gt;Page 2&lt;/h3&gt;  &lt;a href="#" onclick="alert('Pages are clickable !'); return false;"&gt;Test me&lt;/a&gt; &lt;/div&gt;
+    &lt;div&gt;&lt;h3&gt;Page 3&lt;/h3&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;h3&gt;Page 4&lt;/h3&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+ $(document).ready(function(){
+     $('#exemple2').flippage({
+         width: 300,
+         height: 150
+     });
+ });
+&lt;/script&gt;
+</code></pre>
         </section>
 
         <footer>
