@@ -1,6 +1,6 @@
 /**
  * FlipPage: Turn pages of your DIVs
- * http://flippage.github.com
+ * http://marcbuils.github.com/Flippage/
  * 
  * By Marc Buils ( marc.buils@marcbuils.fr )
  * Under LGPL v3 license (http://www.gnu.org/licenses/lgpl-3.0.txt)
