@@ -5,6 +5,9 @@
  * Par Marc Buils ( marc.buils@marcbuils.fr )
  * Sous licence LGPL v3 (http://www.gnu.org/licenses/lgpl-3.0.txt)
  * 
+ * v0.6.1
+ * - Bug fixed for IE10
+ * 
  * v0.6.0
  * - Bind 'previous' and 'next' trigger to going to the previous or the next page
  *  
@@ -474,9 +477,8 @@
 		} );
 	};
 	
-	$(document).ready(function(){
-		function touchHandler(event)
-		{
+	$( function(){
+		$(document).bind( "touchstart touchmove touchend touchcancel", function(event){
 		    var touches = event.changedTouches,
 		        first = touches[0],
 		        type = "";
@@ -499,11 +501,6 @@
 		    if ( $('.flippage_flipping').size() > 0 ) {
 		    	event.preventDefault();
 		    }
-		}
-
-	    document.addEventListener("touchstart", touchHandler, true);
-	    document.addEventListener("touchmove", touchHandler, true);
-	    document.addEventListener("touchend", touchHandler, true);
-	    document.addEventListener("touchcancel", touchHandler, true);    
-	});
+		} );
+	} );
 })(jQuery);
