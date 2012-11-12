@@ -1,18 +1,18 @@
 FlipPage: Tournez les pages sur votre iPad !
 ============================================
 
-FlipPage est un plugin jQuery créant l'illusion de tourner les pages d'un livre.
-Développé à l'origine pour une présentation sur tablette tactile, il peut aussi trouver sa place dans une application de livre électronique par exemple.
+FlipPage est un plugin jQuery cr√©ant l'illusion de tourner les pages d'un livre.
+D√©velopp√© √† l'origine pour une pr√©sentation sur tablette tactile, il peut aussi trouver sa place dans une application de livre √©lectronique par exemple.
 
-Ce plugin a été développé en  HTML5/CSS3 afin d'utiliser la puissance graphique hardware et de créer ainsi une animation plus fluide.
+Ce plugin a √©t√© d√©velopp√© en  HTML5/CSS3 afin d'utiliser la puissance graphique hardware et de cr√©er ainsi une animation plus fluide.
 
-Vous trouverez des exemples d'utilisation ci-après, et n'hésitez pas à me laisser vos impressions et vos suggestions ;)
+Vous trouverez des exemples d'utilisation ci-apr√®s, et n'h√©sitez pas √† me laisser vos impressions et vos suggestions ;)
 
 Navigateurs normalement compatibles
 -----------------------------------
 iPhone/iPad/iPod Touch - Android - Firefox 3.6+ - Chrome - IE 9 (sans animation) - IE10 
 
-Navigateurs testés
+Navigateurs test√©s
 ------------------
 iPhone 3G / iPhone 3GS / iPad 1 / iPad 2 - Android - Firefox 6 - Firefox 7 Beta - Safari - IE9 - IE10
 
@@ -28,7 +28,7 @@ Changelog
 ---------
 - v0.6.1 - 12/11/2012: Correction de Bug sous IE10
 - v0.6.0 - 19/09/2012: Ajout des trigger 'next' et 'previous' pour changer les pages en mode programmation.
-- v0.5.1: Ajout d'un délai pour éviter de changer la page lors d'un click involontaire
+- v0.5.1: Ajout d'un d√©lai pour √©viter de changer la page lors d'un click involontaire
 - v0.5.0: Import initial 
 
 Demo
