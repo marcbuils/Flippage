@@ -477,7 +477,7 @@
 		} );
 	};
 	
-	if ( typeof(document.addEventListener) != undefined ){
+	if ( typeof(document.addEventListener) != "undefined" ){
 		$(document).ready(function(){
 			function touchHandler(event)
 			{
