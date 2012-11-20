@@ -5,6 +5,9 @@
  * Par Marc Buils ( marc.buils@marcbuils.fr )
  * Sous licence LGPL v3 (http://www.gnu.org/licenses/lgpl-3.0.txt)
  * 
+ * v0.6.2
+ * - Bug fixed for jQuery 1.8
+ * 
  * v0.6.1
  * - Bug fixed for IE10
  * 
@@ -60,16 +63,16 @@
 			
 			// add next and prev functions
 			$this.bind('previous', function( p_event ){
-				$this.children('div').eq( _current ).trigger( 'mousedown' );
+				$this.children('div').eq( _current ).trigger( 'mousedown', [true] );
 				$this.delay(_options.delay).queue( function(){
-					$(document).trigger( 'mouseup' );
+					$(document).trigger( 'mouseup', [true] );
 					$this.dequeue();
 				}, 'delayflip');
 			});
 			$this.bind('next', function( p_event ){
-				$this.children('div').eq( _current+1 ).trigger( 'mousedown' );
+				$this.children('div').eq( _current+1 ).trigger( 'mousedown', [true] );
 				$this.delay(_options.delay).queue( function(){
-					$(document).trigger( 'mouseup' );
+					$(document).trigger( 'mouseup', [true] );
 					$this.dequeue();
 				}, 'delayflip');
 			});
@@ -105,7 +108,7 @@
 				$this.children('div').eq( _current+1 ).css( { left: _options.width  } );
 				
 				if ( $this.children('div').eq( _current+2 ).size() > 0 ){
-					$this.children('div').eq( _current+1 ).bind('mousedown', function( p_e ){
+					$this.children('div').eq( _current+1 ).bind('mousedown', function( p_e, p_isTrigger ){
 						_mousedown = true;
 
 						$this.delay( _options.delay ).queue( function(){
@@ -117,7 +120,11 @@
 								var $_p4 = $this.children('div').eq( _current+3 );
 								
 								$this.addClass('flippage_flipping');
-								_pos.left = p_e.pageX - p_e.layerX - _options.width;
+								if ( !p_isTrigger ){
+									_pos.left = p_e.pageX - ( typeof(p_e.layerX) == "undefined" ? p_e.originalEvent.layerX : p_e.layerX ) - _options.width;
+								}else{
+									_pos.left = 0;	
+								}
 								$_p1.css( { zIndex: 1, left: 0 } );
 								$_p2.css( { zIndex: 3, left: _options.width  } );
 								$_p3.css( { zIndex: 4, left: _options.width*2, width: 0,								
@@ -150,7 +157,7 @@
 				}
 				
 				if ( _current > 0 ){
-					$this.children('div').eq( _current ).bind('mousedown', function( p_e ){
+					$this.children('div').eq( _current ).bind('mousedown', function( p_e, p_isTrigger ){
 						_mousedown = true;
 						
 						$this.delay( _options.delay ).queue( function(){
@@ -162,7 +169,11 @@
 								var $_p4 = $this.children('div').eq( _current-2 );
 	
 								$this.addClass('flippage_flipping');
-								_pos.left = p_e.pageX - p_e.layerX;
+								if ( !p_isTrigger ){
+									_pos.left = p_e.pageX - ( typeof(p_e.layerX) == "undefined" ? p_e.originalEvent.layerX : p_e.layerX );
+								}else{
+									_pos.left = 0;	
+								}
 								$_p1.css( { zIndex: 1, left: _options.width } );
 								$_p2.show().css({
 									zIndex: 3, 
@@ -365,7 +376,7 @@
 						} );
 					}
 				})
-				.bind('mouseup', function(p_e){
+				.bind('mouseup', function(p_e, p_isTrigger){
 					_mousedown = false;
 					
 					if (_draggingRight) {

@@ -22,10 +22,11 @@ LGPL v3
 
 Version actuelle
 ----------------
-v0.6.1
+v0.6.2
 
 Changelog
 ---------
+- v0.6.2 - 20/11/2012: Correction de Bug sous jQuery 1.8
 - v0.6.1 - 12/11/2012: Correction de Bug sous IE10
 - v0.6.0 - 19/09/2012: Ajout des trigger 'next' et 'previous' pour changer les pages en mode programmation.
 - v0.5.1: Ajout d'un délai pour éviter de changer la page lors d'un click involontaire
