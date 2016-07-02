@@ -1,7 +1,7 @@
 {
 	"name": "jquery-plugin-flippage",
 	"main": "jquery.flippage.js",
-	"version": "0.6.3",
+	"version": "0.6.4",
 	"author": "Marc Buils <marc.buils@unionup.fr>",
 	"description": "turn pages of your DIVs",
 	"license": "MIT",
