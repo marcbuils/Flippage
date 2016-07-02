@@ -3,7 +3,7 @@
 	"main": "jquery.flippage.js",
 	"version": "0.6.3",
 	"author": "Marc Buils <marc.buils@unionup.fr>",
-	"description": "urn pages of your DIVs",
+	"description": "turn pages of your DIVs",
 	"license": "MIT",
 	"keywords": [
 		"flippage",
