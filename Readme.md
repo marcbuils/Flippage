@@ -8,6 +8,12 @@ Ce plugin a été développé en  HTML5/CSS3 afin d'utiliser la puissance graphi
 
 Vous trouverez des exemples d'utilisation ci-après, et n'hésitez pas à me laisser vos impressions et vos suggestions ;)
 
+Installation
+------------
+```
+npm install jquery-plugin-flippage
+```
+
 Navigateurs normalement compatibles
 -----------------------------------
 iPhone/iPad/iPod Touch - Android - Firefox 3.6+ - Chrome - IE 9 (sans animation) - IE10 
