@@ -22,11 +22,11 @@ LGPL v3
 
 Version actuelle
 ----------------
-v0.6.3
+v0.6.4
 
 Changelog
 ---------
-- v0.6.3 - 02/07/2016: Ajout du fichier package.json pour publication sur npm (thanks Rob for this request)
+- v0.6.4 - 02/07/2016: Ajout du fichier package.json pour publication sur npm (thanks Rob for this request)
 - v0.6.2 - 20/11/2012: Correction de Bug sous jQuery 1.8
 - v0.6.1 - 12/11/2012: Correction de Bug sous IE10
 - v0.6.0 - 19/09/2012: Ajout des trigger 'next' et 'previous' pour changer les pages en mode programmation.
